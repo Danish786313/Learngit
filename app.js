@@ -6,6 +6,7 @@ const cors = require('cors');
 require('dotenv').config()
 // const { sequelize } = require('./models');
 global.__basedir = __dirname + "/";
+const demoapi = require('./routes/demoroute')
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -18,9 +19,11 @@ app.get('/master', (req, res) => {
     })
 })
 
+app.use('/master/api', demoapi)
+
 const port = (process.env.PORT || 4000)
 
 //Starting a server
 app.listen(port, async () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://localhost:${port}/master`)
 })
